@@ -1,0 +1,31 @@
+.content {
+  text-align: center;
+  font-weight: 300;
+  line-height: 1.7em;
+  letter-spacing: 0.1em;
+  word-spacing: 0.1em;
+
+  & > div {
+    &:not(:first-child) {
+      margin-top: 2em;
+    }
+  }
+}
+
+.entry {
+  font-size: 1.3em;
+}
+
+.heroNames {
+  font-size: 1em;
+
+  & > strong {
+    margin: 0 4px;
+    font-size: 1.3em;
+    font-weight: 500;
+  }
+}
+
+.venue {
+  font-size: 1.3em;
+}

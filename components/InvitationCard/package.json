@@ -1,0 +1,6 @@
+{
+  "name": "InvitationCard",
+  "version": "0.1.0",
+  "private": true,
+  "main": "InvitationCard.tsx"
+}
