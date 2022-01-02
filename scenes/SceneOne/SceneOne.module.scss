@@ -1,3 +1,82 @@
+@keyframes circleAnimation {
+  0% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-1px);
+  }
+
+  100% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+
+@keyframes hideAwayAnimation {
+  to {
+    opacity: 0;
+  }
+}
+
 .One {
   //background-color: antiquewhite;
+}
+
+.arrowForOpenWrapper {
+  position: absolute;
+  top: 50%;
+  right: 100px;
+  width: 205px;
+  height: 300px;
+
+  .arrowImage {
+    opacity: .1;
+  }
+
+  .drawableCircle {
+    position: absolute;
+    bottom: 15px;
+    right: 72px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: orangered;
+    opacity: .5;
+    animation-name: circleAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  &.hideAway {
+    animation: hideAwayAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+
+  @media only screen and (max-width: 767px) {
+    right: 30px;
+    width: 102.5px;
+    height: 150px;
+
+    @keyframes circleAnimation {
+      100% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .drawableCircle {
+      position: absolute;
+      bottom: 9px;
+      right: 36px;
+      width: 30px;
+      height: 30px;
+      animation-name: circleAnimation;
+      animation-duration: .8s;
+    }
+  }
 }

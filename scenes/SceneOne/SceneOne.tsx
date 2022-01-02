@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 import InvitationCard from '../../components/InvitationCard'
 import styles from './SceneOne.module.scss'
 
 const CARD_SIZE_BY_CONTAINER = 0.8
-const CARD_TRANSLATE_Y_BY_CONTAINER = 0.2
 const CARD_SCALE_TIMING_BY_OPENING = 0.5
 
 export interface SceneOneProps {
@@ -64,6 +64,22 @@ function SceneOne(
         wrapperWidth={wrapperWidth}
         opening={cardOpening}
       />
+
+      <div
+        className={classNames(styles.arrowForOpenWrapper, {
+          [styles.hideAway]: (cardOpening > 0),
+        })}
+      >
+        <Image
+          className={styles.arrowImage}
+          src="/images/arrow_with_drawable.png"
+          // width={205}
+          // height={300}
+          layout="fill"
+        />
+
+        <div className={styles.drawableCircle} />
+      </div>
     </div>
   )
 }
