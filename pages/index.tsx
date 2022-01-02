@@ -33,6 +33,17 @@ export default function Home() {
       <Head>
         <title>Wedding Invitation</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta property="og:title" content="Wedding Invitation | 2022년 3월 1일" key="title" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://wedding220301.com" />
+        <meta property="og:description" content="각자의 길을 열심히 걸어온 저희 두 사람 삶이라는 멋진 여행길에 함께 오르고자 합니다. - 2022년 3월 1일 화요일 낮 12시, 그랜드힐 컨벤션 3F 그랜드볼룸" />
+        <meta property="og:locale" content="ko_KR" />
+        <meta property="og:image" content="http://wedding220301/images/og_image.jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content="Wedding Invitation - 2022/03/01" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="628" />
       </Head>
 
       <main>
