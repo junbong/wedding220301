@@ -3,7 +3,8 @@ import Head from 'next/head'
 import { useResizeDetector } from 'react-resize-detector'
 
 import { SCROLL_HEIGHT } from '../constants'
-import SceneOne from '../scenes/SceneOne/SceneOne'
+import SceneOne from '../scenes/SceneOne'
+import SceneTwo from '../scenes/SceneTwo'
 
 export default function Home() {
   const { ref: scrollContainerRef, width, height } = useResizeDetector()
@@ -54,6 +55,13 @@ export default function Home() {
           }}
         >
           <SceneOne
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={containerRef.current?.clientHeight}
+          />
+
+          <SceneTwo
             wrapperWidth={width}
             wrapperHeight={height}
             currentScroll={scrollY}

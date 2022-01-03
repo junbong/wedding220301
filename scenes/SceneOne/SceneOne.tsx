@@ -7,7 +7,7 @@ import isNil from 'lodash/isNil'
 
 import { SCENE_PADDING } from '../../constants'
 import InvitationCard from '../../components/InvitationCard'
-import { SceneProps } from '../../types/SceneProps'
+import { SceneProps } from '../../types'
 import styles from './SceneOne.module.scss'
 
 const CARD_SIZE_BY_CONTAINER = 0.8
@@ -26,6 +26,7 @@ function SceneOne(
   const sceneContainerStyle = useMemo(() => {
     const result = {
       width: wrapperWidth,
+      height: sceneHeight,
     }
     if (
       !isNil(sceneHeight) &&
