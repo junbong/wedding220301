@@ -95,6 +95,11 @@ function SceneTwo(
         전봉 ❤️ 다은의 결혼식이 <strong>1일</strong> 남았습니다.
       </div>
 
+      <div className={styles.heroNames}>
+        <strong>이강한</strong><strong>·</strong><strong>정임선</strong> 의 장남 <strong>전봉</strong><br />
+        <strong>정범석</strong><strong>·</strong><strong>김복원</strong> 의 장녀 <strong>다은</strong>
+      </div>
+
       <div
         className={styles.mapContainer}
         style={mapContainerStyle}

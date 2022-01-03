@@ -1,9 +1,9 @@
 .content {
   text-align: center;
   font-weight: 300;
-  line-height: 1.7em;
-  letter-spacing: 0.1em;
-  word-spacing: 0.1em;
+  line-height: 2em;
+  letter-spacing: 0.3em;
+  word-spacing: 0.2em;
 
   & > div {
     &:not(:first-child) {
@@ -12,16 +12,29 @@
   }
 }
 
-.entry {
-  font-size: 1.3em;
+.heroesWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1em;
+
+  .heroes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.6em;
+    font-weight: 400;
+
+    & > span {}
+
+    & > strong {
+      margin: 0 1.1em;
+      font-size: 2em;
+      font-weight: 200;
+    }
+  }
 }
 
-.heroNames {
-  font-size: 1em;
-
-  & > strong {
-    margin: 0 4px;
-    font-size: 1.3em;
-    font-weight: 500;
-  }
+.entry {
+  font-size: 1.3em;
 }

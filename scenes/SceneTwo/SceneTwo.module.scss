@@ -23,13 +23,27 @@
   .remainingDaysWrapper {
     width: 100%;
     padding: 1em 0;
-    margin-bottom: 10em;
+    margin-bottom: 5em;
     text-align: center;
     font-weight: 300;
 
     & > strong {
       color: #d27c7c;
       font-weight: inherit;
+    }
+  }
+
+  .heroNames {
+    font-size: 1em;
+    text-align: center;
+    padding: 7em 0;
+    line-height: 3em;
+    letter-spacing: 0.6em;
+
+    & > strong {
+      margin: 0 4px;
+      font-size: 1.3em;
+      font-weight: 500;
     }
   }
 
