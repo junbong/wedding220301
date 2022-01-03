@@ -32,6 +32,7 @@ export default function Home() {
       <Head>
         <title>Wedding Invitation</title>
         <link rel="icon" href="/favicon.ico" />
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a03f9d9e75edf1acc768186daa32169b"></script>
 
         <meta property="og:title" content="Wedding Invitation | 2022년 3월 1일" key="title" />
         <meta property="og:type" content="website" />

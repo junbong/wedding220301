@@ -6,6 +6,13 @@ body {
   Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
   sans-serif;
   background-color: #FFFFFF;
+  color: #555555;
+}
+
+a {
+  &:link, &:visited, &:hover, &:active {
+    color: inherit;
+  }
 }
 
 * {
