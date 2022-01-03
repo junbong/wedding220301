@@ -1,9 +1,12 @@
 import { useMemo, useLayoutEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 import { SCENE_PADDING, VENUE_LATITUDE, VENUE_LONGITUDE } from '../../constants'
 import { SceneProps } from '../../types'
+import Calendar from '../../components/Calendar'
+import Snap1 from '../../public/images/snap_01.jpg'
 import styles from './SceneTwo.module.scss'
 
 export interface SceneTwoProps extends SceneProps {}
@@ -71,6 +74,27 @@ function SceneTwo(
       className={classNames(styles.wrapper, 'scene')}
       style={sceneContainerStyle}
     >
+      <Image
+        src={Snap1}
+        layout="fixed"
+        quality={100}
+        placeholder="blur"
+        alt="Wedding photo"
+        width={wrapperWidth}
+        height={wrapperWidth * 0.6666}
+      />
+
+      <div className={styles.venue}>
+        2022년 3월 1일 화요일 낮 12시<br />
+        그랜드힐 컨벤션 3F 그랜드볼룸
+      </div>
+
+      <Calendar className={styles.calendar} />
+
+      <div className={styles.remainingDaysWrapper}>
+        전봉 ❤️ 다은의 결혼식이 <strong>1일</strong> 남았습니다.
+      </div>
+
       <div
         className={styles.mapContainer}
         style={mapContainerStyle}

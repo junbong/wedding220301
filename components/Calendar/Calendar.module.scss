@@ -1,0 +1,37 @@
+.calendar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: serif;
+
+  %dayBase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 14.28%;
+    height: 16.66%;
+  }
+
+  .day {
+    @extend %dayBase;
+    position: relative;
+
+    &.sunday {
+      color: #d27c7c;
+    }
+
+    &.highlight {
+      &::after {
+        @extend %dayBase;
+        content: attr(data-day);
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        color: #FFFFFF;
+        font-weight: bold;
+        border-radius: 50%;
+        background: #aa78a2;
+      }
+    }
+  }
+}

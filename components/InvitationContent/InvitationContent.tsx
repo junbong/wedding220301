@@ -15,11 +15,6 @@ function InvitationContent() {
         <strong>이강한</strong><strong>·</strong><strong>정임선</strong> 의 장남 <strong>전봉</strong><br />
         <strong>정범석</strong><strong>·</strong><strong>김복원</strong> 의 장녀 <strong>다은</strong>
       </div>
-
-      <div className={styles.venue}>
-        2022년 3월 1일 화요일 낮 12시<br />
-        그랜드힐 컨벤션 3F 그랜드볼룸
-      </div>
     </div>
   )
 }
