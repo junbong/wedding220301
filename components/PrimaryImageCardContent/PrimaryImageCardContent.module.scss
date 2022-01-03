@@ -1,0 +1,36 @@
+$cornerSize: 4em;
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  & > span {
+    border-radius: 3px;
+    box-shadow: 0 0 2px 0 #000000;
+  }
+
+  %cornerBase {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    z-index: 1;
+  }
+
+  .leftTopCorner {
+    @extend %cornerBase;
+    top: -0.2em;
+    left: -0.2em;
+    border-width: $cornerSize $cornerSize 0 0;
+    border-color: #F8F8F8 transparent transparent transparent;
+  }
+
+  .rightBottomCorner {
+    @extend %cornerBase;
+    right: -0.2em;
+    bottom: -0.2em;
+    border-width: 0 0 $cornerSize $cornerSize;
+    border-color: transparent transparent #F8F8F8 transparent;
+  }
+}

@@ -73,8 +73,6 @@ function SceneOne(
         <Image
           className={styles.arrowImage}
           src="/images/arrow_with_drawable.png"
-          // width={205}
-          // height={300}
           layout="fill"
         />
 

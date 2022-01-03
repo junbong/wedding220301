@@ -26,9 +26,10 @@
 .arrowForOpenWrapper {
   position: absolute;
   top: 50%;
-  right: 100px;
+  right: 60px;
   width: 205px;
   height: 300px;
+  transform: scale(0.6);
 
   .arrowImage {
     opacity: .1;

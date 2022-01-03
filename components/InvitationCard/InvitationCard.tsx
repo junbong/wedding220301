@@ -4,7 +4,9 @@ import Image from 'next/image'
 import classNames from 'classnames'
 
 import VenueContent from '../VenueContent'
+import PrimaryImageCardContent from '../PrimaryImageCardContent'
 import InvitationContent from '../InvitationContent'
+import MainLogoImage from '../../public/images/main.png'
 import styles from './InvitationCard.module.scss'
 
 export interface InvitationCardProps {
@@ -104,9 +106,11 @@ function InvitationCard(
       >
         <div className={styles.mainImageWrapper}>
           <Image
-            src="/images/main.png"
+            src={MainLogoImage}
             layout="fixed"
             quality={100}
+            priority
+            placeholder="blur"
             alt="Wedding Invitation"
             {...imageSize}
           />
@@ -117,7 +121,8 @@ function InvitationCard(
         className={styles.frontPageContent}
         style={frontPageContentStyle}
       >
-        <VenueContent />
+        {/*<VenueContent />*/}
+        <PrimaryImageCardContent />
       </div>
 
       <div
