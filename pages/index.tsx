@@ -1,19 +1,17 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Head from 'next/head'
 import { useResizeDetector } from 'react-resize-detector'
 
+import { SCROLL_HEIGHT } from '../constants'
 import SceneOne from '../scenes/SceneOne/SceneOne'
 
 export default function Home() {
-  const { ref, width, height } = useResizeDetector()
+  const { ref: scrollContainerRef, width, height } = useResizeDetector()
 
+  const containerRef = useRef<HTMLDivElement>()
   const [scrollY, setScrollY] = useState<number>(0)
 
-  const handleScrollContainer = useCallback(() => {
-    //
-  }, [])
-
-  useEffect(() => {
+  useEffect(function attachWindowScrollEventListener() {
     function handleScrollWindow() {
       setScrollY(window.scrollY)
     }
@@ -27,7 +25,7 @@ export default function Home() {
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       className="container"
     >
       <Head>
@@ -46,13 +44,23 @@ export default function Home() {
         <meta property="og:image:height" content="628" />
       </Head>
 
-      <main>
-        <SceneOne
-          wrapperWidth={width}
-          wrapperHeight={height}
-          currentScroll={scrollY}
-        />
-      </main>
+      <div
+        ref={scrollContainerRef}
+        className="scrollContainer"
+      >
+        <main
+          style={{
+            height: `${SCROLL_HEIGHT}vh`,
+          }}
+        >
+          <SceneOne
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={containerRef.current?.clientHeight}
+          />
+        </main>
+      </div>
 
       <footer>
         Created by Junbong

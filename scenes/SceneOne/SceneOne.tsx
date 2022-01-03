@@ -2,34 +2,47 @@ import { useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import classNames from 'classnames'
 import Image from 'next/image'
+import set from 'lodash/set'
+import isNil from 'lodash/isNil'
 
+import { SCENE_PADDING } from '../../constants'
 import InvitationCard from '../../components/InvitationCard'
+import { SceneProps } from '../../types/SceneProps'
 import styles from './SceneOne.module.scss'
 
 const CARD_SIZE_BY_CONTAINER = 0.8
 const CARD_SCALE_TIMING_BY_OPENING = 0.5
 
-export interface SceneOneProps {
-  wrapperWidth?: number
-  wrapperHeight?: number
-  currentScroll?: number
-}
+export interface SceneOneProps extends SceneProps {}
 
 function SceneOne(
   {
     wrapperWidth = 0,
     wrapperHeight = 0,
     currentScroll = 0,
+    sceneHeight,
   }: SceneOneProps
 ) {
-  const sceneContainerStyle = useMemo(() => ({
-    width: wrapperWidth,
-  }), [
+  const sceneContainerStyle = useMemo(() => {
+    const result = {
+      width: wrapperWidth,
+    }
+    if (
+      !isNil(sceneHeight) &&
+      currentScroll >= (sceneHeight + SCENE_PADDING)
+    ) {
+      set(result, 'position', 'absolute')
+      set(result, 'top', sceneHeight + SCENE_PADDING)
+    }
+    return result
+  }, [
     wrapperWidth,
+    currentScroll,
+    sceneHeight,
   ])
 
   const cardOpening = useMemo(() => (
-    Math.min(currentScroll / (wrapperHeight / 4), 1)
+    Math.min(currentScroll / sceneHeight, 1)
   ), [
     wrapperHeight,
     currentScroll,

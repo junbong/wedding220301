@@ -1,0 +1,3 @@
+export const SCENES_COUNT = 4
+export const SCENE_PADDING = 50
+export const SCROLL_HEIGHT = (100 * SCENES_COUNT) + (SCENE_PADDING * (SCENES_COUNT - 1))
