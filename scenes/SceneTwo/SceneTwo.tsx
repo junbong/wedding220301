@@ -1,13 +1,23 @@
-import { useMemo, useLayoutEffect, useRef } from 'react'
+import React, { useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import classNames from 'classnames'
 import Image from 'next/image'
 
-import { SCENE_PADDING, VENUE_LATITUDE, VENUE_LONGITUDE } from '../../constants'
+import { SCENE_PADDING } from '../../constants'
 import { SceneProps } from '../../types'
 import Calendar from '../../components/Calendar'
-import Snap1 from '../../public/images/snap_01.jpg'
+import Snap2 from '../../public/images/snap_02.jpg'
 import styles from './SceneTwo.module.scss'
+
+const THE_DAY = new Date(2022, 2, 1)
+const REMAINING_DAYS = (() => {
+  let now = new Date()
+  now.setHours(0)
+  now.setMinutes(0)
+  now.setMilliseconds(0)
+  const gap = THE_DAY.getTime() - now.getTime()
+  return Math.round((gap / 1000) / (60 * 60 * 24))
+})()
 
 export interface SceneTwoProps extends SceneProps {}
 
@@ -19,35 +29,8 @@ function SceneTwo(
     sceneHeight,
   }: SceneTwoProps
 ) {
-  const mapContainerRef = useRef<HTMLDivElement>()
-  const kakaoMapInitialized = useRef<boolean>(false)
-
-  useLayoutEffect(function initializeMap() {
-    if (!kakaoMapInitialized.current) {
-      setTimeout(() => {
-        const kakao = (window as any).kakao
-
-        const mapOptions = {
-          center: new kakao.maps.LatLng(VENUE_LATITUDE, VENUE_LONGITUDE),
-          level: 5,
-        }
-        const map = new kakao.maps.Map(mapContainerRef.current, mapOptions)
-        map.setZoomable(false)
-        map.setDraggable(false)
-
-        const markerPosition  = new kakao.maps.LatLng(VENUE_LATITUDE, VENUE_LONGITUDE)
-        const marker = new kakao.maps.Marker({
-          position: markerPosition
-        })
-        marker.setMap(map)
-      }, 0)
-
-      kakaoMapInitialized.current = true
-    }
-  }, [])
-
   const sceneContainerStyle = useMemo<CSSProperties>(() => ({
-    top: (sceneHeight * 2) + SCENE_PADDING,
+    top: (sceneHeight * 2) + (SCENE_PADDING * 1),
     width: wrapperWidth,
     height: sceneHeight,
   }), [
@@ -56,26 +39,13 @@ function SceneTwo(
     sceneHeight,
   ])
 
-  const mapContainerStyle = useMemo<CSSProperties>(() => ({
-    width: wrapperWidth,
-  }), [
-    wrapperWidth,
-  ])
-
-  const mapStyle = useMemo<CSSProperties>(() => ({
-    width: wrapperWidth,
-    height: wrapperWidth * 2/3,
-  }), [
-    wrapperWidth,
-  ])
-
   return (
     <div
       className={classNames(styles.wrapper, 'scene')}
       style={sceneContainerStyle}
     >
       <Image
-        src={Snap1}
+        src={Snap2}
         layout="fixed"
         quality={100}
         placeholder="blur"
@@ -92,31 +62,7 @@ function SceneTwo(
       <Calendar className={styles.calendar} />
 
       <div className={styles.remainingDaysWrapper}>
-        전봉 ❤️ 다은의 결혼식이 <strong>1일</strong> 남았습니다.
-      </div>
-
-      <div className={styles.heroNames}>
-        <strong>이강한</strong><strong>·</strong><strong>정임선</strong> 의 장남 <strong>전봉</strong><br />
-        <strong>정범석</strong><strong>·</strong><strong>김복원</strong> 의 장녀 <strong>다은</strong>
-      </div>
-
-      <div
-        className={styles.mapContainer}
-        style={mapContainerStyle}
-      >
-        <div
-          ref={mapContainerRef}
-          className={styles.map}
-          style={mapStyle}
-        />
-
-        <a
-          className={styles.linkDetail}
-          href="https://map.kakao.com/link/map/1948333104"
-          target="_blank"
-        >
-          지도를 자세히 보려면 여기를 눌러주세요
-        </a>
+        전봉 ❤️ 다은의 결혼식이 <strong>{ `${REMAINING_DAYS}일` }</strong> 남았습니다.
       </div>
     </div>
   )

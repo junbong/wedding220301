@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-family: serif;
+  font-family: 'Shrikhand', cursive;
+  font-size: 0.9em;
+  font-weight: 200;
 
   %dayBase {
     display: flex;
@@ -15,6 +17,11 @@
   .day {
     @extend %dayBase;
     position: relative;
+    opacity: 0.8;
+
+    &.weekdays {
+      opacity: 1;
+    }
 
     &.sunday {
       color: #d27c7c;
@@ -32,6 +39,10 @@
         border-radius: 50%;
         background: #aa78a2;
       }
+    }
+
+    &.prevMonth {
+      opacity: 0.4;
     }
   }
 }

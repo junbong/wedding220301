@@ -1,16 +1,19 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback, CSSProperties } from 'react'
 import Head from 'next/head'
 import { useResizeDetector } from 'react-resize-detector'
 
 import { SCROLL_HEIGHT } from '../constants'
 import SceneOne from '../scenes/SceneOne'
 import SceneTwo from '../scenes/SceneTwo'
+import SceneThree from '../scenes/SceneThree'
+import SceneFour from '../scenes/SceneFour'
 
 export default function Home() {
   const { ref: scrollContainerRef, width, height } = useResizeDetector()
 
   const containerRef = useRef<HTMLDivElement>()
   const [scrollY, setScrollY] = useState<number>(0)
+  const [containerStyle, setContainerStyle] = useState<CSSProperties>()
 
   useEffect(function attachWindowScrollEventListener() {
     function handleScrollWindow() {
@@ -22,6 +25,10 @@ export default function Home() {
     return function cleanup() {
       window.removeEventListener('scroll', handleScrollWindow)
     }
+  }, [])
+
+  const handleSetStyle = useCallback((style: CSSProperties) => {
+    setContainerStyle(style)
   }, [])
 
   return (
@@ -49,6 +56,7 @@ export default function Home() {
       <div
         ref={scrollContainerRef}
         className="scrollContainer"
+        style={containerStyle}
       >
         <main
           style={{
@@ -60,6 +68,7 @@ export default function Home() {
             wrapperHeight={height}
             currentScroll={scrollY}
             sceneHeight={containerRef.current?.clientHeight}
+            onSetStyle={handleSetStyle}
           />
 
           <SceneTwo
@@ -67,12 +76,32 @@ export default function Home() {
             wrapperHeight={height}
             currentScroll={scrollY}
             sceneHeight={containerRef.current?.clientHeight}
+            onSetStyle={handleSetStyle}
+          />
+
+          <SceneThree
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={containerRef.current?.clientHeight}
+            onSetStyle={handleSetStyle}
+          />
+
+          <SceneFour
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={containerRef.current?.clientHeight}
+            onSetStyle={handleSetStyle}
           />
         </main>
       </div>
 
       <footer>
-        Created by Junbong
+        <h1>그랜드힐 컨벤션 3층 그랜드볼룸</h1>
+        <h2>서울 강남구 역삼로 607</h2>
+        <h2>02-6964-7889</h2> <br />
+        <h3>Created by Junbong</h3>
       </footer>
     </div>
   )

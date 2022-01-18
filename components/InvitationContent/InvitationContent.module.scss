@@ -25,16 +25,24 @@
     font-size: 1.6em;
     font-weight: 400;
 
-    & > span {}
+    & > span {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #333;
+    }
 
     & > strong {
-      margin: 0 1.1em;
-      font-size: 2em;
+      font-family: "Shrikhand", cursive;
+      margin: 0 0.4em;
+      font-size: 1.6em;
       font-weight: 200;
+      word-spacing: -0.55em;
+      color: #555555;
     }
   }
 }
 
 .entry {
-  font-size: 1.3em;
+  font-size: 1.1em;
+  word-spacing: -0.1em;
 }

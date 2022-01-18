@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from './Calendar.module.scss'
 
 const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
-const DAYS = [null, null, ...range(1, 31), null, null, null]
+const DAYS = [27, 28, ...range(1, 31), null, null, null]
 
 export interface CalendarProps {
   className?: string
@@ -45,7 +45,7 @@ function Calendar(
       { WEEKDAYS.map((weekday: string, index: number) => (
         <div
           key={index.toString(32)}
-          className={classNames(styles.day, {
+          className={classNames(styles.day, styles.weekdays, {
             [styles.sunday]: index % 7 === 0,
           })}
           style={dayElementStyle}
@@ -54,19 +54,26 @@ function Calendar(
         </div>
       )) }
 
-      { DAYS.map((day: number | null, index: number) => (
-        <div
-          key={index.toString(32)}
-          className={classNames(styles.day, {
-            [styles.sunday]: index % 7 === 0,
-            [styles.highlight]: day === 1,
-          })}
-          style={dayElementStyle}
-          data-day={day}
-        >
-          { day }
-        </div>
-      )) }
+      { (() => {
+        let isPrevMonth = true
+        return DAYS.map((day: number | null, index: number) => {
+          if (isPrevMonth && day === 1) { isPrevMonth = false }
+          return (
+            <div
+              key={index.toString(32)}
+              className={classNames(styles.day, {
+                [styles.sunday]: index % 7 === 0,
+                [styles.highlight]: day === 1,
+                [styles.prevMonth]: isPrevMonth,
+              })}
+              style={dayElementStyle}
+              data-day={day}
+            >
+              { day }
+            </div>
+          )
+        })
+      })() }
     </div>
   )
 }
