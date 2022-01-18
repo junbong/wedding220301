@@ -49,7 +49,7 @@ function SceneFour(
     sceneHeight,
   ])
 
-  useEffect(function foo() {
+  useEffect(function dimWrapper() {
     const currentScrollBottom = currentScroll + sceneHeight
 
     if (currentScrollBottom >= sceneTop) {

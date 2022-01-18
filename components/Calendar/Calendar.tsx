@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useLayoutEffect } from 'react'
+import { useState, useRef, useMemo, useEffect } from 'react'
 import range from 'lodash/range'
 import classNames from 'classnames'
 
@@ -20,12 +20,12 @@ function Calendar(
 
   const [wrapperWidth, setWrapperWidth] = useState<number>(0)
 
-  useLayoutEffect(function retrieveWrapperWidth() {
+  useEffect(function retrieveWrapperWidth() {
     setTimeout(() => {
       if (wrapperRef.current) {
         setWrapperWidth(wrapperRef.current.clientWidth)
       }
-    }, 0)
+    }, 10)
   }, [
     wrapperRef.current,
   ])
