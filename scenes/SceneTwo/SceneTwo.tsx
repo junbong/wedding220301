@@ -55,7 +55,7 @@ function SceneTwo(
       />
 
       <div className={styles.venue}>
-        2022년 3월 1일 화요일 낮 12시<br />
+        2022. 03. 01 TUE PM 12:00<br />
         그랜드힐 컨벤션 3F 그랜드볼룸
       </div>
 

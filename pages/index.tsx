@@ -41,7 +41,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a03f9d9e75edf1acc768186daa32169b"></script>
 
-        <meta property="og:title" content="Wedding Invitation | 2022년 3월 1일" key="title" />
+        <meta property="og:title" content="전봉 ❤ 다은 결혼합니다" key="title" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://wedding220301.com" />
         <meta property="og:description" content="2022년 3월 1일 화요일 낮 12시, 그랜드힐 컨벤션 3F 그랜드볼룸" />
