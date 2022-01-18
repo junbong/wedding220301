@@ -12,7 +12,6 @@ export default function Home() {
   const { ref: scrollContainerRef, width, height } = useResizeDetector()
 
   const containerRef = useRef<HTMLDivElement>()
-  const [clientHeight, setClientHeight] = useState<number>(undefined)
   const [scrollY, setScrollY] = useState<number>(0)
   const [containerStyle, setContainerStyle] = useState<CSSProperties>()
 
@@ -27,14 +26,6 @@ export default function Home() {
       window.removeEventListener('scroll', handleScrollWindow)
     }
   }, [])
-
-  useEffect(function retrieveClientHeight() {
-    if (containerRef.current && clientHeight === undefined) {
-      setClientHeight(containerRef.current.clientHeight)
-    }
-  }, [
-    containerRef.current,
-  ])
 
   const handleSetStyle = useCallback((style: CSSProperties) => {
     setContainerStyle(style)
@@ -76,7 +67,7 @@ export default function Home() {
             wrapperWidth={width}
             wrapperHeight={height}
             currentScroll={scrollY}
-            sceneHeight={clientHeight}
+            sceneHeight={containerRef.current?.clientHeight}
             onSetStyle={handleSetStyle}
           />
 
@@ -84,7 +75,7 @@ export default function Home() {
             wrapperWidth={width}
             wrapperHeight={height}
             currentScroll={scrollY}
-            sceneHeight={clientHeight}
+            sceneHeight={containerRef.current?.clientHeight}
             onSetStyle={handleSetStyle}
           />
 
@@ -92,7 +83,7 @@ export default function Home() {
             wrapperWidth={width}
             wrapperHeight={height}
             currentScroll={scrollY}
-            sceneHeight={clientHeight}
+            sceneHeight={containerRef.current?.clientHeight}
             onSetStyle={handleSetStyle}
           />
 
@@ -100,7 +91,7 @@ export default function Home() {
             wrapperWidth={width}
             wrapperHeight={height}
             currentScroll={scrollY}
-            sceneHeight={clientHeight}
+            sceneHeight={containerRef.current?.clientHeight}
             onSetStyle={handleSetStyle}
           />
         </main>
