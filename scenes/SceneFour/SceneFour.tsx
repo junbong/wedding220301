@@ -126,8 +126,6 @@ function SceneFour(
             <Image
               src={snap}
               layout="fill"
-              width={100}
-              height={100}
               objectFit="cover"
               quality={100}
             />
@@ -167,8 +165,6 @@ function SceneFour(
             <Image
               src={snap}
               layout="fill"
-              width={100}
-              height={100}
               objectFit="cover"
               quality={100}
             />
@@ -191,8 +187,6 @@ function SceneFour(
             <Image
               src={snap}
               layout="fill"
-              width={100}
-              height={100}
               objectFit="cover"
               quality={100}
             />

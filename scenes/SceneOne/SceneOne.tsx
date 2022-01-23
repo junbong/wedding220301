@@ -84,13 +84,15 @@ function SceneOne(
           [styles.hideAway]: (cardOpening > 0),
         })}
       >
-        <Image
-          className={styles.arrowImage}
-          src="/images/arrow_with_drawable.png"
-          layout="fill"
-        />
+        <div className={styles.arrowImageWrapper}>
+          <Image
+            className={styles.arrowImage}
+            src="/images/arrow_with_drawable.png"
+            layout="fill"
+          />
 
-        <div className={styles.drawableCircle} />
+          <div className={styles.drawableCircle} />
+        </div>
       </div>
     </div>
   )

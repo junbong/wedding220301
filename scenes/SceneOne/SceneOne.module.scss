@@ -31,23 +31,31 @@
   height: 300px;
   transform: translateY(20px) scale(0.6);
 
-  .arrowImage {
-    opacity: .1;
-  }
+  .arrowImageWrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
 
-  .drawableCircle {
-    position: absolute;
-    bottom: 15px;
-    right: 72px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: orangered;
-    opacity: .5;
-    animation-name: circleAnimation;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+    .arrowImage {
+      opacity: .1;
+    }
+
+    .drawableCircle {
+      position: absolute;
+      bottom: 15px;
+      right: 72px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: orangered;
+      opacity: .5;
+      animation-name: circleAnimation;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
   }
 
   &.hideAway {
