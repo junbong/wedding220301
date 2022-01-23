@@ -90,9 +90,9 @@ function SceneOne(
             src="/images/arrow_with_drawable.png"
             layout="fill"
           />
-
-          <div className={styles.drawableCircle} />
         </div>
+
+        <div className={styles.drawableCircle} />
       </div>
     </div>
   )

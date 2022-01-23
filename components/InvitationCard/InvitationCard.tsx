@@ -3,7 +3,6 @@ import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
 
-import VenueContent from '../VenueContent'
 import PrimaryImageCardContent from '../PrimaryImageCardContent'
 import InvitationContent from '../InvitationContent'
 import MainLogoImage from '../../public/images/main.png'
@@ -121,7 +120,6 @@ function InvitationCard(
         className={styles.frontPageContent}
         style={frontPageContentStyle}
       >
-        {/*<VenueContent />*/}
         <PrimaryImageCardContent />
       </div>
 
