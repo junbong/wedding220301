@@ -85,6 +85,20 @@ function SceneFour(
     wrapperWidth,
   ])
 
+  const galleryStyle = useMemo(() => ({
+    height: sceneHeight,
+    padding: `${photoGap}px 0`,
+  }), [
+    sceneHeight,
+    photoGap,
+  ])
+
+  const singlePhotoWrapperStyle = useMemo(() => ({
+    margin: photoGap * 2,
+  }), [
+    photoGap,
+  ])
+
   const photoWrapperStyle = useMemo<CSSProperties>(() => ({
     gap: photoGap,
   }), [
@@ -108,92 +122,91 @@ function SceneFour(
       className={classNames(styles.wrapper, 'scene')}
       style={sceneContainerStyle}
     >
-      <div className={styles.galleryTitle}>
-        Gallery
-      </div>
-
       <div
-        className={styles.photoWrapper}
-        style={photoWrapperStyle}
+        className={styles.gallery}
+        style={galleryStyle}
       >
-        { [
-          SnapV1, SnapV2, SnapV3,
-          Snap2, Snap3, Snap4,
-        ].map((snap, index) => (
-          <div
-            key={index.toString(32)}
-            className={styles.photoCell}
-            style={photoStyle}
-          >
-            <Image
-              src={snap}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-            />
-          </div>
-        )) }
-      </div>
+        <div
+          className={styles.photoWrapper}
+          style={photoWrapperStyle}
+        >
+          { [
+            SnapV1, SnapV2, SnapV3,
+            Snap2, Snap3, Snap4,
+          ].map((snap, index) => (
+            <div
+              key={index.toString(32)}
+              className={styles.photoCell}
+              style={photoStyle}
+            >
+              <Image
+                src={snap}
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+              />
+            </div>
+          )) }
+        </div>
 
-      <div
-        style={{
-          margin: photoGap * 2,
-        }}
-      >
-        <Image
-          src={Snap5}
-          layout="fixed"
-          quality={100}
-          placeholder="blur"
-          alt="Wedding photo"
-          width={(wrapperWidth - (photoGap * 4))}
-          height={(wrapperWidth - (photoGap * 4)) * 0.6666}
-        />
-      </div>
+        <div
+          className={styles.singlePhotoWrapper}
+          style={singlePhotoWrapperStyle}
+        >
+          <Image
+            src={Snap5}
+            layout="fill"
+            quality={100}
+            placeholder="blur"
+            alt="Wedding photo"
+            objectFit="cover"
+          />
+        </div>
 
-      <div
-        className={styles.photoWrapper}
-        style={photoWrapperStyle}
-      >
-        { [
-          Snap1, Snap6, SnapV4,
-          Snap7, Snap8, Snap9,
-        ].map((snap, index) => (
-          <div
-            key={index.toString(32)}
-            className={styles.photoCell}
-            style={photoStyle}
-          >
-            <Image
-              src={snap}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-            />
-          </div>
-        )) }
-      </div>
+        <div
+          className={styles.photoWrapper}
+          style={photoWrapperStyle}
+        >
+          { [
+            Snap1, Snap6, SnapV4,
+            Snap7, Snap8, Snap9,
+          ].map((snap, index) => (
+            <div
+              key={index.toString(32)}
+              className={styles.photoCell}
+              style={photoStyle}
+            >
+              <Image
+                src={snap}
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+              />
+            </div>
+          )) }
+        </div>
 
-      <div
-        className={styles.photoWrapper}
-        style={photoWrapperStyle}
-      >
-        { [
-          Snap10, Snap11, Snap12,
-        ].map((snap, index) => (
-          <div
-            key={index.toString(32)}
-            className={styles.photoCell}
-            style={photoStyle}
-          >
-            <Image
-              src={snap}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-            />
-          </div>
-        )) }
+        {/*<div*/}
+        {/*  className={styles.photoWrapper}*/}
+        {/*  style={photoWrapperStyle}*/}
+        {/*>*/}
+        {/*  { [*/}
+        {/*    Snap10, Snap11, Snap12,*/}
+        {/*  ].map((snap, index) => (*/}
+        {/*    <div*/}
+        {/*      key={index.toString(32)}*/}
+        {/*      className={styles.photoCell}*/}
+        {/*      style={photoStyle}*/}
+        {/*    >*/}
+        {/*      <Image*/}
+        {/*        src={snap}*/}
+        {/*        layout="fill"*/}
+        {/*        objectFit="cover"*/}
+        {/*        quality={100}*/}
+        {/*      />*/}
+        {/*    </div>*/}
+        {/*  )) }*/}
+        {/*</div>*/}
       </div>
     </div>
   )

@@ -6,19 +6,25 @@
     font-size: 2em;
   }
 
-  .photoWrapper {
+  .gallery {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+    flex-direction: column;
 
-    .photoCell {
-      position: relative;
+    .photoWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+
+      .photoCell {
+        position: relative;
+      }
     }
-  }
 
-  .singlePhotoWrapper {
-    position: relative;
+    .singlePhotoWrapper {
+      position: relative;
+      flex: 1 1 auto;
+    }
   }
 }
