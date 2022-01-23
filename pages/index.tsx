@@ -11,6 +11,7 @@ import SceneFour from '../scenes/SceneFour'
 export default function Home() {
   const { ref: scrollContainerRef, width, height } = useResizeDetector()
 
+  const containerRef = useRef<HTMLDivElement>()
   const [deviceHeight, setDeviceHeight] = useState<number>(0)
   const [scrollY, setScrollY] = useState<number>(0)
   const [containerStyle, setContainerStyle] = useState<CSSProperties>()
@@ -27,99 +28,90 @@ export default function Home() {
     }
   }, [])
 
-  const deviceHeightDetectorStyle = useMemo(() => ({
-    display: deviceHeight ? 'none' : undefined,
-  }), [
-    deviceHeight,
+  useEffect(function foo() {
+    if (containerRef.current) {
+      setDeviceHeight(containerRef.current.clientHeight)
+    }
+  }, [
+    containerRef.current
   ])
-
-  const handleDeviceHeightDetectorRef = useCallback((node: HTMLDivElement) => {
-    setDeviceHeight(node.clientHeight)
-  }, [])
 
   const handleSetStyle = useCallback((style: CSSProperties) => {
     setContainerStyle(style)
   }, [])
 
   return (
-    <>
-      <div
-        ref={handleDeviceHeightDetectorRef}
-        className="deviceHeightDetector"
-        style={deviceHeightDetectorStyle}
-      />
+    <div
+      ref={containerRef}
+      className="container"
+    >
+      <Head>
+        <title>Wedding Invitation</title>
+        <link rel="icon" href="/favicon.ico" />
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a03f9d9e75edf1acc768186daa32169b"></script>
+
+        <meta property="og:title" content="전봉 ❤ 다은 결혼합니다" key="title" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://wedding220301.com" />
+        <meta property="og:description" content="2022년 3월 1일 화요일 낮 12시, 그랜드힐 컨벤션 3F 그랜드볼룸" />
+        <meta property="og:locale" content="ko_KR" />
+        <meta property="og:image" content="http://wedding220301.com/images/og_image.jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content="Wedding Invitation - 2022/03/01" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="628" />
+      </Head>
 
       <div
-        className="container"
+        ref={scrollContainerRef}
+        className="scrollContainer"
+        style={containerStyle}
       >
-        <Head>
-          <title>Wedding Invitation</title>
-          <link rel="icon" href="/favicon.ico" />
-          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a03f9d9e75edf1acc768186daa32169b"></script>
-
-          <meta property="og:title" content="전봉 ❤ 다은 결혼합니다" key="title" />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="http://wedding220301.com" />
-          <meta property="og:description" content="2022년 3월 1일 화요일 낮 12시, 그랜드힐 컨벤션 3F 그랜드볼룸" />
-          <meta property="og:locale" content="ko_KR" />
-          <meta property="og:image" content="http://wedding220301.com/images/og_image.jpg" />
-          <meta property="og:image:type" content="image/jpeg" />
-          <meta property="og:image:alt" content="Wedding Invitation - 2022/03/01" />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="628" />
-        </Head>
-
-        <div
-          ref={scrollContainerRef}
-          className="scrollContainer"
-          style={containerStyle}
+        <main
+          style={{
+            height: `${(SCENES_COUNT + 1) * 100}vh`,
+          }}
         >
-          <main
-            style={{
-              height: `${(SCENES_COUNT + 1) * 100}vh`,
-            }}
-          >
-            <SceneOne
-              wrapperWidth={width}
-              wrapperHeight={height}
-              currentScroll={scrollY}
-              sceneHeight={deviceHeight}
-              onSetStyle={handleSetStyle}
-            />
+          <SceneOne
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={deviceHeight}
+            onSetStyle={handleSetStyle}
+          />
 
-            <SceneTwo
-              wrapperWidth={width}
-              wrapperHeight={height}
-              currentScroll={scrollY}
-              sceneHeight={deviceHeight}
-              onSetStyle={handleSetStyle}
-            />
+          <SceneTwo
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={deviceHeight}
+            onSetStyle={handleSetStyle}
+          />
 
-            <SceneThree
-              wrapperWidth={width}
-              wrapperHeight={height}
-              currentScroll={scrollY}
-              sceneHeight={deviceHeight}
-              onSetStyle={handleSetStyle}
-            />
+          <SceneThree
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={deviceHeight}
+            onSetStyle={handleSetStyle}
+          />
 
-            <SceneFour
-              wrapperWidth={width}
-              wrapperHeight={height}
-              currentScroll={scrollY}
-              sceneHeight={deviceHeight}
-              onSetStyle={handleSetStyle}
-            />
-          </main>
-        </div>
-
-        <footer>
-          <h1>그랜드힐 컨벤션 3층 그랜드볼룸</h1>
-          <h2>서울 강남구 역삼로 607</h2>
-          <h2>02-6964-7889</h2> <br />
-          <h3>Created by Junbong</h3>
-        </footer>
+          <SceneFour
+            wrapperWidth={width}
+            wrapperHeight={height}
+            currentScroll={scrollY}
+            sceneHeight={deviceHeight}
+            onSetStyle={handleSetStyle}
+          />
+        </main>
       </div>
-    </>
+
+      <footer>
+        <h1>그랜드힐 컨벤션 3층 그랜드볼룸</h1>
+        <h2>서울 강남구 역삼로 607</h2>
+        <h2>02-6964-7889</h2> <br />
+        <h3>Created by Junbong</h3>
+      </footer>
+    </div>
   )
 }

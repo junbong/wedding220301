@@ -71,6 +71,8 @@ function SceneThree(
     wrapperWidth,
   ])
 
+  if (!wrapperHeight || !sceneHeight) { return null }
+
   return (
     <div
       className={classNames(styles.wrapper, 'scene')}
