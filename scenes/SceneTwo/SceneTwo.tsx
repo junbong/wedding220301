@@ -39,6 +39,19 @@ function SceneTwo(
     sceneHeight,
   ])
 
+  const snapImageProps = useMemo(() => ({
+    width: wrapperWidth,
+    height: wrapperWidth * 0.6666,
+  }), [
+    wrapperWidth,
+  ])
+
+  const contentWrapperStyle = useMemo(() => ({
+    height: `calc(100vh - ${snapImageProps.height}px)`,
+  }), [
+    snapImageProps.height,
+  ])
+
   if (!wrapperHeight || !sceneHeight) { return null }
 
   return (
@@ -52,19 +65,25 @@ function SceneTwo(
         quality={100}
         placeholder="blur"
         alt="Wedding photo"
-        width={wrapperWidth}
-        height={wrapperWidth * 0.6666}
+        {...snapImageProps}
       />
 
-      <div className={styles.venue}>
-        2022. 03. 01 TUE PM 12:00<br />
-        그랜드힐 컨벤션 3F 그랜드볼룸
-      </div>
+      <div
+        className={styles.contentWrapper}
+        style={contentWrapperStyle}
+      >
+        <div className={styles.venue}>
+          2022. 03. 01 TUE PM 12:00<br />
+          그랜드힐 컨벤션 3F 그랜드볼룸
+        </div>
 
-      <Calendar className={styles.calendar} />
+        <div className={styles.calendarWrapper}>
+          <Calendar className={styles.calendar} />
+        </div>
 
-      <div className={styles.remainingDaysWrapper}>
-        전봉 ❤️ 다은의 결혼식이 <strong>{ `${REMAINING_DAYS}일` }</strong> 남았습니다.
+        <div className={styles.remainingDaysWrapper}>
+          전봉 ❤️ 다은의 결혼식이 <strong>{ `${REMAINING_DAYS}일` }</strong> 남았습니다.
+        </div>
       </div>
     </div>
   )
