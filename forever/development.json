@@ -1,0 +1,11 @@
+{
+  "uid": "wedding220301",
+  "append": true,
+  "watch": false,
+  "script": "node_modules/.bin/next",
+  "args": ["start", "-p", "$PORT"],
+  "sourceDir": "/Users/lloyd/workspace/github/wedding220301",
+  "logFile": "/Users/lloyd/workspace/github/wedding220301/logs/forever.log",
+  "outFile": "/Users/lloyd/workspace/github/wedding220301/logs/out.log",
+  "errFile": "/Users/lloyd/workspace/github/wedding220301/logs/error.log"
+}

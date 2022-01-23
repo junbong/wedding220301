@@ -1,0 +1,11 @@
+{
+  "uid": "wedding220301",
+  "append": true,
+  "watch": false,
+  "script": "node_modules/.bin/next",
+  "args": ["start", "-p", "$PORT"],
+  "sourceDir": "/home/wedding220301/app/wedding220301",
+  "logFile": "/home/wedding220301/app/wedding220301/logs/forever.log",
+  "outFile": "/home/wedding220301/app/wedding220301/logs/out.log",
+  "errFile": "/home/wedding220301/app/wedding220301/logs/error.log"
+}
