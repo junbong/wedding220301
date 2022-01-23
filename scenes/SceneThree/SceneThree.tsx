@@ -42,7 +42,7 @@ function SceneThree(
           position: markerPosition
         })
         marker.setMap(map)
-      }, 0)
+      }, 100)
 
       kakaoMapInitialized.current = true
     }
@@ -58,6 +58,19 @@ function SceneThree(
     sceneHeight,
   ])
 
+  const snapImageProps = useMemo(() => ({
+    width: wrapperWidth,
+    height: wrapperWidth * 0.6666,
+  }), [
+    wrapperWidth,
+  ])
+
+  const contentWrapperStyle = useMemo(() => ({
+    height: `calc(100vh - ${snapImageProps.height}px)`,
+  }), [
+    snapImageProps.height,
+  ])
+
   const mapContainerStyle = useMemo<CSSProperties>(() => ({
     width: wrapperWidth,
   }), [
@@ -66,7 +79,7 @@ function SceneThree(
 
   const mapStyle = useMemo<CSSProperties>(() => ({
     width: wrapperWidth,
-    height: wrapperWidth * 2/3,
+    height: wrapperWidth * 0.6666,
   }), [
     wrapperWidth,
   ])
@@ -84,85 +97,93 @@ function SceneThree(
         quality={100}
         placeholder="blur"
         alt="Wedding photo"
-        width={wrapperWidth}
-        height={wrapperWidth * 0.6666}
+        {...snapImageProps}
       />
 
-      <div className={styles.heroNames}>
-        <strong>이강한</strong><strong>·</strong><strong>정임선</strong> 의 장남 <strong>전봉</strong><br />
-        <strong>정범석</strong><strong>·</strong><strong>김복원</strong> 의 장녀 <strong>다은</strong>
-      </div>
-
       <div
-        className={styles.mapContainer}
-        style={mapContainerStyle}
+        className={styles.contentWrapper}
+        style={contentWrapperStyle}
       >
+        <div className={styles.heroNames}>
+          <div className={styles.heroName}>
+            <strong>이강한</strong><strong>·</strong><strong>정임선</strong> 의 장남 <strong>전봉</strong><br />
+          </div>
+          <div className={styles.heroName}>
+            <strong>정범석</strong><strong>·</strong><strong>김복원</strong> 의 장녀 <strong>다은</strong>
+          </div>
+        </div>
+
         <div
-          ref={mapContainerRef}
-          className={styles.map}
-          style={mapStyle}
-        />
-
-        <a
-          className={styles.linkDetail}
-          href="https://map.kakao.com/link/map/1948333104"
-          target="_blank"
+          className={styles.mapContainer}
+          style={mapContainerStyle}
         >
-          지도를 자세히 보려면 여기를 눌러주세요
-        </a>
-      </div>
+          <div
+            ref={mapContainerRef}
+            className={styles.map}
+            style={mapStyle}
+          />
 
-      <div className={styles.callings}>
-        <div className={styles.calling}>
-          <div>신랑에게 연락하기</div>
-
-          <a href="tel:01037162233">
-            <Image
-              src={CallIcon}
-              layout="fixed"
-              quality={100}
-              alt="Call to groom"
-              width={24}
-              height={24}
-            />
-          </a>
-
-          <a href="sms:01037162233">
-            <Image
-              src={SmsIcon}
-              layout="fixed"
-              quality={100}
-              alt="Sms to groom"
-              width={28}
-              height={24}
-            />
+          <a
+            className={styles.linkDetail}
+            href="https://map.kakao.com/link/map/1948333104"
+            target="_blank"
+          >
+            지도를 자세히 보려면 여기를 눌러주세요
           </a>
         </div>
 
-        <div className={styles.calling}>
-          <div>신부에게 연락하기</div>
+        <div className={styles.callings}>
+          <div className={styles.calling}>
+            <div>신랑에게 연락하기</div>
 
-          <a href="tel:01025863599">
-            <Image
-              src={CallIcon}
-              layout="fixed"
-              quality={100}
-              alt="Call to bride"
-              width={24}
-              height={24}
-            />
-          </a>
+            <a href="tel:01037162233">
+              <Image
+                src={CallIcon}
+                layout="fixed"
+                quality={100}
+                alt="Call to groom"
+                width={24}
+                height={24}
+              />
+            </a>
 
-          <a href="sms:01025863599">
-            <Image
-              src={SmsIcon}
-              layout="fixed"
-              quality={100}
-              alt="Sms to bride"
-              width={28}
-              height={24}
-            />
-          </a>
+            <a href="sms:01037162233">
+              <Image
+                src={SmsIcon}
+                layout="fixed"
+                quality={100}
+                alt="Sms to groom"
+                width={28}
+                height={24}
+              />
+            </a>
+          </div>
+
+          <div className={styles.calling}>
+            <div>신부에게 연락하기</div>
+
+            <a href="tel:01025863599">
+              <Image
+                src={CallIcon}
+                layout="fixed"
+                quality={100}
+                alt="Call to bride"
+                width={24}
+                height={24}
+              />
+            </a>
+
+            <a href="sms:01025863599">
+              <Image
+                src={SmsIcon}
+                layout="fixed"
+                quality={100}
+                alt="Sms to bride"
+                width={28}
+                height={24}
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

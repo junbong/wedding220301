@@ -1,65 +1,81 @@
 .wrapper {
   position: absolute;
-  background: rosybrown;
 
-  .heroNames {
-    font-size: 1em;
-    text-align: center;
-    padding: 3em 0;
-    line-height: 3em;
-    letter-spacing: 0.6em;
-
-    & > strong {
-      margin: 0 4px;
-      font-size: 1.3em;
-      font-weight: 500;
-    }
-  }
-
-  .mapContainer {
+  .contentWrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
 
-    .map {
-      width: 100%;
-      height: 100%;
-      background-color: #555555;
-      pointer-events: none;
-    }
-
-    .linkDetail {
-      padding: 15px;
-      background-color: #F8F8F8;
-      text-align: center;
-      text-decoration: none;
-    }
-  }
-
-  .callings {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    margin: 3em auto;
-
-    .calling {
+    .heroNames {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      width: 100%;
+      flex: 1 1 20%;
+      font-size: 1em;
+      text-align: center;
+      line-height: 3em;
+      letter-spacing: 0.6em;
 
-      &:not(:first-child) {
-        margin-top: 2em;
-      }
+      .heroName {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 
-      & > * {
-        &:not(:first-child) {
-          margin-left: 2em;
-        }
-
-        &:nth-child(1) {
-          flex: 1 1 100%;
+        & > strong {
+          margin: 0 4px;
           font-size: 1.3em;
           font-weight: 500;
+        }
+      }
+    }
+
+    .mapContainer {
+      display: flex;
+      flex-direction: column;
+
+      .map {
+        width: 100%;
+        height: 100%;
+        background-color: #555555;
+        pointer-events: none;
+      }
+
+      .linkDetail {
+        padding: 15px;
+        background-color: #F8F8F8;
+        text-align: center;
+        text-decoration: none;
+      }
+    }
+
+    .callings {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1 1 auto;
+
+      .calling {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        padding: 0 2em;
+
+        &:not(:first-child) {
+          margin-top: 2em;
+        }
+
+        & > * {
+          &:not(:first-child) {
+            margin-left: 2em;
+          }
+
+          &:nth-child(1) {
+            flex: 1 1 100%;
+            font-size: 1.3em;
+            font-weight: 500;
+          }
         }
       }
     }
