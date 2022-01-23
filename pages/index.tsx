@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback, CSSProperties } from 'react'
+import { useEffect, useState, useRef, useCallback, CSSProperties, useMemo } from 'react'
 import Head from 'next/head'
 import { useResizeDetector } from 'react-resize-detector'
 
@@ -11,8 +11,7 @@ import SceneFour from '../scenes/SceneFour'
 export default function Home() {
   const { ref: scrollContainerRef, width, height } = useResizeDetector()
 
-  const [containerRef, setContainerRef] = useState<HTMLDivElement>()
-  const [containerHeight, setContainerHeight] = useState<number>(0)
+  const [deviceHeight, setDeviceHeight] = useState<number>(0)
   const [scrollY, setScrollY] = useState<number>(0)
   const [containerStyle, setContainerStyle] = useState<CSSProperties>()
 
@@ -28,9 +27,14 @@ export default function Home() {
     }
   }, [])
 
-  const handleContainerRef = useCallback((node: HTMLDivElement) => {
-    setContainerRef(node)
-    setContainerHeight(node.clientHeight)
+  const deviceHeightDetectorStyle = useMemo(() => ({
+    display: deviceHeight ? 'none' : undefined,
+  }), [
+    deviceHeight,
+  ])
+
+  const handleDeviceHeightDetectorRef = useCallback((node: HTMLDivElement) => {
+    setDeviceHeight(node.clientHeight)
   }, [])
 
   const handleSetStyle = useCallback((style: CSSProperties) => {
@@ -40,11 +44,12 @@ export default function Home() {
   return (
     <>
       <div
+        ref={handleDeviceHeightDetectorRef}
         className="deviceHeightDetector"
+        style={deviceHeightDetectorStyle}
       />
 
       <div
-        ref={handleContainerRef}
         className="container"
       >
         <Head>
@@ -78,7 +83,7 @@ export default function Home() {
               wrapperWidth={width}
               wrapperHeight={height}
               currentScroll={scrollY}
-              sceneHeight={containerHeight}
+              sceneHeight={deviceHeight}
               onSetStyle={handleSetStyle}
             />
 
@@ -86,7 +91,7 @@ export default function Home() {
               wrapperWidth={width}
               wrapperHeight={height}
               currentScroll={scrollY}
-              sceneHeight={containerHeight}
+              sceneHeight={deviceHeight}
               onSetStyle={handleSetStyle}
             />
 
@@ -94,7 +99,7 @@ export default function Home() {
               wrapperWidth={width}
               wrapperHeight={height}
               currentScroll={scrollY}
-              sceneHeight={containerHeight}
+              sceneHeight={deviceHeight}
               onSetStyle={handleSetStyle}
             />
 
@@ -102,7 +107,7 @@ export default function Home() {
               wrapperWidth={width}
               wrapperHeight={height}
               currentScroll={scrollY}
-              sceneHeight={containerHeight}
+              sceneHeight={deviceHeight}
               onSetStyle={handleSetStyle}
             />
           </main>
