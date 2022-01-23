@@ -10,6 +10,8 @@ import SceneFour from '../scenes/SceneFour'
 
 export default function Home() {
   const deviceHeight = useRef<number>()
+  const prevTouchPosition = useRef<number>(0)
+  const isAutoScrolling = useRef<boolean>(false)
   const [scrollY, setScrollY] = useState<number>(0)
   const [containerStyle, setContainerStyle] = useState<CSSProperties>()
 
@@ -37,6 +39,36 @@ export default function Home() {
     }
   }, [])
 
+  const windowSmoothScrollTo = useRef((targetY: number, cb: Function) => {
+    console.log('%cwindowSmoothScrollTo', 'font-weight:bold;color:black')
+    const currentScrollY = window.scrollY
+    const scrollAmount = targetY - currentScrollY
+    const step = 1000 / scrollAmount
+
+    console.log({
+      currentScrollY,
+      targetY,
+      scrollAmount,
+      step,
+    })
+    let start
+    let progress
+
+    function smoothScrollBody(timestamp) {
+      if (!start) start = timestamp
+      progress = timestamp - start
+      console.log('progress:', progress)
+
+      if (progress < 1000) {
+        // window.scrollBy(0, step)
+        window.requestAnimationFrame(smoothScrollBody)
+      } else {
+        cb()
+      }
+    }
+    window.requestAnimationFrame(smoothScrollBody)
+  })
+
   useEffect(function attachWindowScrollEventListener() {
     function handleScrollWindow() {
       setScrollY(window.scrollY)
@@ -46,6 +78,48 @@ export default function Home() {
 
     return function cleanup() {
       window.removeEventListener('scroll', handleScrollWindow)
+    }
+  }, [])
+
+  useEffect(function attachWindowTouchEventListener() {
+    function handleTouchStartWindow(event) {
+      prevTouchPosition.current = event.changedTouches[0].screenY
+    }
+
+    function handleTouchEndWindow(event) {
+      const currentTouchPosition = event.changedTouches[0].screenY - prevTouchPosition.current
+      if (
+        deviceHeight.current &&
+        currentTouchPosition < 0
+      ) {
+        // Snap to Scene
+        if (window.scrollY >= (deviceHeight.current * 4)) {
+          //
+        } else if (window.scrollY >= (deviceHeight.current * 3.1)) {
+          window.scroll({
+            top: deviceHeight.current * 4,
+            behavior: 'smooth',
+          })
+        } else if (window.scrollY >= (deviceHeight.current * 2.1)) {
+          window.scroll({
+            top: deviceHeight.current * 3,
+            behavior: 'smooth',
+          })
+        } else if (window.scrollY >= (deviceHeight.current * 1.1)) {
+          window.scroll({
+            top: deviceHeight.current * 2,
+            behavior: 'smooth',
+          })
+        }
+      }
+    }
+
+    window.addEventListener('touchstart', handleTouchStartWindow)
+    window.addEventListener('touchend', handleTouchEndWindow)
+
+    return function cleanup() {
+      window.removeEventListener('touchstart', handleTouchStartWindow)
+      window.removeEventListener('touchend', handleTouchEndWindow)
     }
   }, [])
 
