@@ -9,11 +9,21 @@ import SceneThree from '../scenes/SceneThree'
 import SceneFour from '../scenes/SceneFour'
 
 export default function Home() {
-  const { ref: scrollContainerRef, width, height } = useResizeDetector()
-
   const deviceHeight = useRef<number>()
   const [scrollY, setScrollY] = useState<number>(0)
   const [containerStyle, setContainerStyle] = useState<CSSProperties>()
+
+  const { ref: containerRef } = useResizeDetector({
+    onResize: function onResize() {
+      if (
+        !deviceHeight.current ||
+        deviceHeight.current < window.visualViewport.height
+      ) {
+        deviceHeight.current = window.visualViewport.height
+      }
+    }
+  })
+  const { ref: scrollContainerRef, width, height } = useResizeDetector()
 
   useEffect(function attachWindowScrollEventListener() {
     function handleScrollWindow() {
@@ -27,16 +37,15 @@ export default function Home() {
     }
   }, [])
 
-  useEffect(function retrieveVisualViewport() {
-    deviceHeight.current = window.visualViewport.height
-  }, [])
-
   const handleSetStyle = useCallback((style: CSSProperties) => {
     setContainerStyle(style)
   }, [])
 
   return (
-    <div className="container">
+    <div
+      ref={containerRef}
+      className="container"
+    >
       <Head>
         <title>Wedding Invitation</title>
         <link rel="icon" href="/favicon.ico" />
